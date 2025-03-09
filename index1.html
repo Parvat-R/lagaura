@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAG AURA | Results-Driven Digital Marketing Agency | India</title>
+    <meta name="description"
+        content="Transform your business with LAG AURA's data-driven digital marketing services. PPC, social media, and website development with 100% satisfaction guaranteed.">
+    <meta name="keywords"
+        content="digital marketing agency India, PPC advertising services, social media marketing, website development, SEO services, ROI-focused marketing">
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="/static/css/fonts.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.min.css" rel="stylesheet">
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/ScrollTrigger.min.js"></script>
+    <!-- Three.js for 3D animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.155.0/three.min.js"></script>
+    <!-- AOS for scroll animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <!-- Swiper for testimonials slider -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.3.2/swiper-bundle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/9.3.2/swiper-bundle.min.css" rel="stylesheet">
+
+    <style>
+        /* Hero Section Styles */
+        #hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        #hero .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        /* Interactive service cards */
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card .service-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .service-card.active .service-details {
+            max-height: 500px;
+        }
+
+        /* Interactive metrics counter */
+        .metric-value {
+            font-weight: bold;
+            font-size: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        /* Testimonials slider */
+        .testimonials-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .swiper-container {
+            width: 100%;
+            padding-bottom: 50px;
+        }
+
+        .swiper-slide {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .swiper-slide:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Interactive process steps */
+        .process-step {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .process-step:hover {
+            transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Fixed floating action button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #FF5722;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 999;
+            transition: transform 0.3s ease;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+        }
+
+        .fab i {
+            font-size: 24px;
+        }
+
+        /* Mobile menu */
+        .mobile-menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 250px;
+                background-color: #1a1a1a;
+                flex-direction: column;
+                padding-top: 70px;
+                transition: right 0.3s ease;
+                z-index: 998;
+            }
+
+            nav ul.active {
+                right: 0;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+        }
+
+        /* Modal styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            padding: 30px;
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /* Form styles */
+        .contact-form {
+            display: grid;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-submit {
+            background-color: #FF5722;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-submit:hover {
+            background-color: #E64A19;
+        }
+
+        /* Interactive chart for metrics */
+        .chart-container {
+            width: 100%;
+            height: 300px;
+            margin-top: 30px;
+        }
+
+        /* Success stories tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab.active {
+            border-bottom: 3px solid #FF5722;
+            font-weight: 600;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="/static/images/lag-aura-white-transparent.png" alt="Lag Aura | Digital Marketing">
+                LAG AURA
+            </div>
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">☰</div>
+            <ul id="mainMenu">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#case-studies">Case Studies</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact" class="btn-primary">Get Started</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section with 3D Background -->
+    <section id="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="container">
+            <h1>Unleash Business <em>Growth</em> With <span>Strategic</span> Digital Marketing</h1>
+            <h2>Let Go of Marketing Burdens, Embrace Measurable Results</h2>
+            <a href="#contact" class="cta-button">Get Your Free Digital Strategy Session →</a>
+            <div class="trust-indicator">No contracts. No hidden fees. 100% satisfaction guarantee.</div>
+        </div>
+    </section>
+
+    <!-- Business Challenge Section -->
+    <section id="challenges" class="section">
+        <div class="container">
+            <h2 data-aos="fade-up">Is Your Digital Marketing Delivering Real Business Results?</h2>
+            <ul class="pain-points" data-aos="fade-up" data-aos-delay="100">
+                <li>Struggling with inconsistent lead generation?</li>
+                <li>Wasting budget on ineffective PPC campaigns?</li>
+                <li>Social media efforts not converting to sales?</li>
+                <li>Website failing to generate quality leads?</li>
+                <li>Unclear ROI from your marketing investments?</li>
+            </ul>
+            <p class="solution-statement" data-aos="fade-up" data-aos-delay="200">LAG AURA's strategic approach addresses these challenges through data-driven
+                marketing solutions customized for your specific business goals and target audience.</p>
+            <a href="#services" class="cta-button-secondary" data-aos="fade-up" data-aos-delay="300">Discover How We Solve These Challenges →</a>
+        </div>
+    </section>
+
+    <!-- Services Overview with Interactive Cards -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 data-aos="fade-up">Comprehensive Digital Marketing Services That Drive Growth</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Our integrated digital marketing services work together to create a cohesive strategy that elevates your
+                brand visibility, engages your target audience, and converts prospects into loyal customers.</p>
+
+            <div class="services-grid">
+                <!-- Service Card 1 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100" data-service="ppc">
+                    <h3>High-Performance PPC Advertising</h3>
+                    <div class="service-icon">
+                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v8"></path><path d="M8 12h8"></path></svg>
+                    </div>
+                    <p>Strategic campaigns that deliver measurable ROI with advanced targeting and optimization.</p>
+                    <div class="service-details">
+                        <ul>
+                            <li>Strategic keyword research and targeting</li>
+                            <li>Conversion-optimized ad copy and landing pages</li>
+                            <li>Advanced audience segmentation and remarketing</li>
+                            <li>Continuous performance optimization</li>
+                            <li>Transparent ROI reporting</li>
+                            <li>Platforms: Google Ads, Meta Ads, LinkedIn Advertising</li>
+                        </ul>
+                        <div class="testimonial-snippet">
+                            <p>"Our PPC campaigns increased qualified leads by 78% while reducing acquisition costs by 45%
+                                for clients across e-commerce, SaaS, and service industries."</p>
+                        </div>
+                    </div>
+                    <a href="#ppc-details" class="service-link">Learn More →</a>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200" data-service="social">
+                    <h3>Strategic Social Media Marketing</h3>
+                    <div class="service-icon">
+                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                    </div>
+                    <p>Engage your audience and drive conversions with platform-specific strategies.</p>
+                    <div class="service-details">
+                        <ul>
+                            <li>Platform-specific content strategy development</li>
+                            <li>Engagement-focused content creation</li>
+                            <li>Community building and management</li>
+                            <li>Paid social campaign management</li>
+                            <li>Performance analytics and optimization</li>
+                            <li>Platforms: Instagram, Facebook, LinkedIn, Twitter</li>
+                        </ul>
+                        <div class="testimonial-snippet">
+                            <p>"Our social media strategies have helped businesses increase engagement by 215% and drive 40%
+                                growth in direct social conversions."</p>
+                        </div>
+                    </div>
+                    <a href="#social-details" class="service-link">Learn More →</a>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300" data-service="website">
+                    <h3>Conversion-Focused Website Development</h3>
+                    <div class="service-icon">
+                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                    </div>
+                    <p>Custom websites designed to convert visitors into customers.</p>
+                    <div class="service-details">
+                        <ul>
+                            <li>Custom website design and development</li>
+                            <li>Mobile-responsive user experience</li>
+                            <li>SEO-optimized architecture</li>
+                            <li>Performance optimization</li>
+                            <li>E-commerce functionality</li>
+                            <li>Content management systems</li>
+                        </ul>
+                        <div class="testimonial-snippet">
+                            <p>"Our websites deliver conversion rates 180% higher than industry averages through strategic
+                                design and user experience optimization."</p>
+                        </div>
+                    </div>
+                    <a href="#website-details" class="service-link">Learn More →</a>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400" data-service="seo">
+                    <h3>Results-Driven SEO Services</h3>
+                    <div class="service-icon">
+                        <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </div>
+                    <p>Boost organic visibility and traffic with comprehensive SEO strategies.</p>
+                    <div class="service-details">
+                        <ul>
+                            <li>Comprehensive technical SEO audit</li>
+                            <li>Competitor and keyword analysis</li>
+                            <li>On-page and off-page optimization</li>
+                            <li>Content strategy and creation</li>
+                            <li>Local SEO optimization</li>
+                            <li>Monthly performance reporting</li>
+                        </ul>
+                        <div class="testimonial-snippet">
+                            <p>"Our SEO strategies have helped businesses achieve first-page rankings for high-value
+                                keywords, increasing organic traffic by 235% on average."</p>
+                        </div>
+                    </div>
+                    <a href="#seo-details" class="service-link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section id="value-proposition" class="section">
+        <div class="container">
+            <h2 data-aos="fade-up">Why Leading Businesses Choose LAG AURA</h2>
+            <div class="usp-grid">
+                <div class="usp-card" data-aos="zoom-in" data-aos-delay="100">
+                    <h3>Data-Driven Approach</h3>
+                    <p>We make decisions based on analytics, not assumptions. Every strategy is backed by comprehensive
+                        data analysis and continually optimized for maximum performance.</p>
+                </div>
+                <div class="usp-card" data-aos="zoom-in" data-aos-delay="200">
+                    <h3>ROI-Focused Methodology</h3>
+                    <p>Our strategies prioritize measurable business outcomes. We track and report on the metrics that
+                        directly impact your bottom line.</p>
+                </div>
+                <div class="usp-card" data-aos="zoom-in" data-aos-delay="300">
+                    <h3>AI-Enhanced Human Expertise</h3>
+                    <p>We combine cutting-edge AI technology with seasoned marketing expertise to deliver results that
+                        neither could achieve alone.</p>
+                </div>
+                <div class="usp-card" data-aos="zoom-in" data-aos-delay="400">
+                    <h3>100% Satisfaction Guarantee</h3>
+                    <p>We stand behind our work with a full money-back guarantee. If you're not satisfied with our
+                        services, we'll refund your investment.</p>
+                </div>
+                <div class="usp-card" data-aos="zoom-in" data-aos-delay="500">
+                    <h3>Transparent Partnership Approach</h3>
+                    <p>No hidden fees, no complicated contracts, no marketing jargon. We believe in clear communication
+                        and complete transparency.</p>
+                </div>
+            </div>
+            <a href="#contact" class="cta-button" data-aos="fade-up" data-aos-delay="600">Experience the LAG AURA Difference →</a>
+        </div>
+    </section>
+
+    <!-- Interactive Results Section with Animated Counters -->
+    <section id="results" class="section">
+        <div class="container">
+            <h2 data-aos="fade-up">Real Results for Real Businesses</h2>
+            <div class="metrics-container" data-aos="fade-up" data-aos-delay="100">
+                <div class="metric">
+                    <div class="metric-value" data-count="15">0</div>
+                    <div class="metric-label">₹15M+ Ad Spend Managed Monthly</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value" data-count="300">0</div>
+                    <div class="metric-label">300% Average ROI for PPC Clients</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value" data-count="235">0</div>
+                    <div class="metric-label">235% Average Increase in Organic Traffic</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value" data-count="180">0</div>
+                    <div class="metric-label">180% Higher Website Conversion Rates</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value" data-count="95">0</div>
+                    <div class="metric-label">95% Client Retention Rate</div>
+                </div>
+            </div>
+            <div class="chart-container" id="resultsChart" data-aos="fade-up" data-aos-delay="200"></div>
+            <div class="client-industries" data-aos="fade-up" data-aos-delay="300">
+                <p>Serving businesses across e-commerce, SaaS, professional services, healthcare, education, and
+                    manufacturing sectors.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Slider -->
+    <section id="testimonials" class="section">
+        <div class="container">
+            <h2 data-aos="fade-up">What Our Clients Say About Working With LAG AURA</h2>
+            <div class="testimonials-container" data-aos="fade-up" data-aos-delay="100">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="testimonial-content">
+                                <p>"LAG AURA transformed our digital marketing strategy completely. Their data-driven approach
+                                    to PPC and social media marketing increased our qualified leads by 132% and reduced our cost
+                                    per acquisition by 45% within just 3 months."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-name">Priya Sharma, CEO</div>
+                                <div class="author-company">TechSolutions India</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-content">
+                                <p>"After struggling with multiple marketing agencies, we found LAG AURA. Their strategic
+                                    approach to our website redesign and SEO campaign resulted in a 215% increase in organic
+                                    traffic and a 78% improvement in conversion rates."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-name">Rajiv Mehta, Founder</div>
+                                <div class="author-company">GrowthFirst Enterprises</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-content">
+                                <p>"The LAG AURA team truly understands digital marketing from both technical and creative
+                                    perspectives. Their comprehensive approach to our online presence has directly contributed
+                                    to a 67% increase in revenue from digital channels."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-name">Anita Patel, Marketing Director</div>
+                                <div class="author-company">Innovate Retail Solutions</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-content">
+                                <p>"We've been working with LAG AURA for over a year now, and the results have been exceptional. Their team is responsive, creative, and always focused on delivering measurable outcomes."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-name">Vikram Singh, Marketing Manager</div>
+                                <div class="author-company">Global Tech Solutions</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="testimonial-content">
+                                <p>"LAG AURA's approach to digital marketing is refreshingly different. They focus on what matters - real business results - rather than vanity metrics. Our ROI has never been better."</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-name">Meera Kapoor, E-commerce Director</div>
+                                <div class="author-company">Luxury Retail Brand</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- Add navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+            <a href="#case-studies" class="cta-button-secondary" data-aos="fade-up" data-aos-delay="200">Read More Client Success Stories →</a>
+        </div>
+    </section>
+
+    <!-- Case Studies with Interactive Tabs -->
+    <section id="case-studies" class="section">
+        <div class="container">
+            <h2 data-aos="fade-up">Success Stories: Real-World Results</h2>
+            <div class="tabs" data-aos="fade-up" data-aos-delay="100">
+                <div class="tab active" data-tab="tab1">E-commerce</div>
+                <div class="tab" data-tab="tab2">SaaS</div>
+                <div class="tab" data-tab="tab3">Professional Services</div>
+            </div>
+            <div class="tab-content active" id="tab1" data-aos="fade-up" data-aos-delay="200">
+                <h3>How We Increased E-commerce Revenue by 143% in 6 Months</h3>
+                <p>For a leading fashion retailer, we implemented a comprehensive digital strategy including:</p>
+                <ul>
+                    <li>Strategic PPC campaigns targeting high-intent keywords</li>
+                    <li>Social media advertising with dynamic product ads</li>
+                    <li>Website optimization focused on user experience and conversion</li>
+                    <li>Email marketing automation for abandoned carts and repeat purchases</li>
+                </ul>
+                <p>The results were transformative: 143% increase in revenue, 89% improvement in ROAS, and 67% growth in average order value.</p>
+            </div>
+            <div class="tab-content" id="tab2">
+                <h3>Reducing CAC by 56% for a Growing SaaS Platform</h3>
+                <p>A B2B SaaS company came to us struggling with high customer acquisition costs. Our solution included:</p>
+                <ul>
+                    <li>Restructuring their Google Ads account with industry-specific segmentation</li>
+                    <li>Creating high-converting landing pages for each customer segment</li>
+                    <li>Implementing detailed conversion tracking and attribution</li>
+                    <li>Developing a content marketing strategy to support organic growth</li>
+                </ul>
+                <p>The outcome: 56% reduction in CAC, 118% increase in trial sign-ups, and 43% improvement in trial-to-paid conversion rate.</p>
+            </div>
+            <div class="tab-content" id="tab3">
+                <h3>Generating 215% More Qualified Leads for a Consulting Firm</h3>
+                <p>A management consulting firm needed to attract higher-value clients. Our approach:</p>
+                <ul>
+                    <li>Comprehensive SEO strategy targeting high-value search terms</li>
+                    <li>Thought leadership content development and promotion</li>
+                    <li>LinkedIn advertising targeting decision-makers in key industries</li>
+                    <li>Website redesign with clear service positioning and testimonials</li>
+                </ul>
+                <p>Results achieved: 215% increase in qualified leads, 78% growth in average contract value, and 5 new enterprise clients within 4 months.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section with Interactive Elements -->
+    <section id="process" class="section">
+        <div class="container">
+            <h2 data-aos="fade-up">Our Proven 4-Step Approach to Digital Marketing Success</h2>
+            <div class="process-steps">
+                <div class="process-step" data-aos="fade-right" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <h3>Discovery & Analysis</h3>
+                    <p>We begin by understanding your business goals, target audience, and competitive landscape through
+                        comprehensive research and data analysis.</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Comprehensive business objectives review</li>
+                            <li>Audience persona development</li>
+                            <li>Competitor positioning analysis</li>
+                            <li>Current marketing performance audit</li>
+                            <li>Market opportunity identification</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="process-step" data-aos="fade-right" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <h3>Strategy Development</h3>
+                    <p>Based on our findings, we create a customized digital marketing strategy aligned with your specific business goals and target audience.</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Channel selection and prioritization</li>
+                            <li>Budget allocation recommendations</li>
+                            <li>Campaign structure and targeting</li>
+                            <li>KPI establishment and tracking setup</li>
+                            <li>Timeline and milestone planning</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="process-step" data-aos="fade-right" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <h3>Implementation & Optimization</h3>
+                    <p>We execute the strategy with precision, continuously monitoring performance and making data-driven optimizations.</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Campaign setup and launch</li>
+                            <li>Creative development and testing</li>
+                            <li>Performance monitoring dashboard</li>
+                            <li>A/B testing and iteration</li>
+                            <li>Weekly optimization cycles</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="process-step" data-aos="fade-right" data-aos-delay="400">
+                    <div class="step-number">4</div>
+                    <h3>Analysis & Reporting</h3>
+                    <p>We provide transparent reporting on key metrics and ROI, with actionable insights for continuous improvement.</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Comprehensive performance reports</li>
+                            <li>ROI and conversion analysis</li>
+                            <li>Strategic recommendations</li>
+                            <li>Monthly review meetings</li>
+                            <li>Quarterly strategy refinement</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+        <div class="container">
+            <h2 data-aos="fade-up">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-question">How long does it take to see results from digital marketing?</div>
+                    <div class="faq-answer">
+                        <p>The timeline for results varies based on your goals, industry, and current digital presence. PPC campaigns typically show results within the first 2-4 weeks. SEO results generally begin to appear within 3-6 months. Social media marketing outcomes depend on your specific objectives but often show engagement improvements within 1-2 months. During our initial strategy session, we'll provide a realistic timeline customized to your situation.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-question">What makes LAG AURA different from other digital marketing agencies?</div>
+                    <div class="faq-answer">
+                        <p>LAG AURA stands out through our data-driven approach, ROI-focused methodology, transparent communication, and results guarantee. We don't lock clients into long-term contracts - our results earn your continued business. Our team combines AI-powered analytics with human expertise to deliver strategies that consistently outperform industry standards.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="faq-question">How much should I budget for digital marketing?</div>
+                    <div class="faq-answer">
+                        <p>Digital marketing budgets should be determined by your business goals, industry competition, and growth targets. We work with businesses across various budget ranges and can develop strategies that maximize ROI regardless of your investment level. Our free strategy session includes budget recommendations based on your specific objectives.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="faq-question">Do you offer standalone services or only comprehensive packages?</div>
+                    <div class="faq-answer">
+                        <p>We offer both comprehensive digital marketing packages and standalone services. While our integrated approach typically delivers the strongest results, we understand that businesses may have specific needs. Whether you need targeted PPC management, website development, or SEO services, we can tailor our offerings to your requirements.</p>
+                    </div>
+                </div>
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
+                    <div class="faq-question">How do you measure and report on marketing performance?</div>
+                    <div class="faq-answer">
+                        <p>We establish clear KPIs aligned with your business goals at the beginning of our engagement. Our reporting includes comprehensive performance data, ROI analysis, and actionable insights. Clients receive access to real-time dashboards and detailed monthly reports. We focus on the metrics that directly impact your business growth, not vanity metrics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 data-aos="fade-up">Ready to Transform Your Digital Marketing?</h2>
+            <p class="contact-subtitle" data-aos="fade-up" data-aos-delay="100">Schedule your free digital strategy session today. No obligations, no pressure - just actionable insights for your business.</p>
+            <div class="contact-container">
+                <div class="contact-form-container" data-aos="fade-right" data-aos-delay="200">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Primary Interest</label>
+                            <select id="service" name="service" required>
+                                <option value="">Select a Service</option>
+                                <option value="ppc">PPC Advertising</option>
+                                <option value="social">Social Media Marketing</option>
+                                <option value="website">Website Development</option>
+                                <option value="seo">SEO Services</option>
+                                <option value="comprehensive">Comprehensive Digital Strategy</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Tell us about your business and goals</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Schedule My Free Strategy Session</button>
+                    </form>
+                </div>
+                <div class="contact-info" data-aos="fade-left" data-aos-delay="300">
+                    <h3>Connect With Us</h3>
+                    <div class="contact-method">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <div class="contact-text">
+                            <p>+91 98765 43210</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <div class="contact-text">
+                            <p>hello@lagaura.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <div class="contact-text">
+                            <p>Tech Hub, Whitefield<br>Bangalore, Karnataka 560066</p>
+                        </div>
+                    </div>
+                    <div class="social-media-links">
+                        <a href="#" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="#" class="social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Action Button (CTA) -->
+    <div class="fab" id="fabButton">
+        <i>📞</i>
+    </div>
+
+    <!-- Modal for Quick Contact -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <h3>Get in Touch</h3>
+            <p>Fill out this form for a quick response, or call us directly at +91 98765 43210.</p>
+            <form id="quickContactForm" class="contact-form">
+                <div class="form-group">
+                    <label for="quickName">Name</label>
+                    <input type="text" id="quickName" name="quickName" required>
+                </div>
+                <div class="form-group">
+                    <label for="quickEmail">Email</label>
+                    <input type="email" id="quickEmail" name="quickEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="quickPhone">Phone</label>
+                    <input type="tel" id="quickPhone" name="quickPhone" required>
+                </div>
+                <div class="form-group">
+                    <label for="quickMessage">How can we help?</label>
+                    <textarea id="quickMessage" name="quickMessage" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="form-submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="/static/images/lag-aura-white-transparent.png" alt="LAG AURA | Digital Marketing">
+                    <p>Empowering Business Growth Through Strategic Digital Marketing</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#ppc-details">PPC Advertising</a></li>
+                        <li><a href="#social-details">Social Media Marketing</a></li>
+                        <li><a href="#website-details">Website Development</a></li>
+                        <li><a href="#seo-details">SEO Services</a></li>
+                        <li><a href="#content-marketing">Content Marketing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#case-studies">Case Studies</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p>Tech Hub, Whitefield<br>Bangalore, Karnataka 560066</p>
+                    <p>Phone: +91 98765 43210<br>Email: hello@lagaura.com</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 LAG AURA. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Smooth Scroll with Lenis
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+
+        // Initialize AOS (Animate On Scroll)
+        document.addEventListener('DOMContentLoaded', function () {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true,
+                mirror: false
+            });
+
+            // Mobile Menu Toggle
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mainMenu = document.getElementById('mainMenu');
+
+            if (mobileMenuToggle && mainMenu) {
+                mobileMenuToggle.addEventListener('click', function () {
+                    mainMenu.classList.toggle('active');
+                });
+            }
+
+            // Service Cards Interaction
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            serviceCards.forEach(card => {
+                card.addEventListener('click', function () {
+                    this.classList.toggle('active');
+                });
+            });
+
+            // Testimonials Slider
+            const swiper = new Swiper('.swiper-container', {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                    },
+                }
+            });
+
+            // Case Studies Tabs
+            const tabs = document.querySelectorAll('.tab');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and content
+                    document.querySelectorAll('.tab').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    document.querySelectorAll('.tab-content').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            // Metrics Counter Animation
+            function animateMetrics() {
+                const metrics = document.querySelectorAll('.metric-value');
+                
+                metrics.forEach(metric => {
+                    const target = parseInt(metric.getAttribute('data-count'));
+                    const duration = 2000;
+                    const step = target / duration * 10;
+                    let current = 0;
+                    
+                    const counter = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            clearInterval(counter);
+                            metric.textContent = target;
+                        } else {
+                            metric.textContent = Math.floor(current);
+                        }
+                    }, 10);
+                    
+                    metric.style.opacity = 1;
+                    metric.style.transform = 'translateY(0)';
+                });
+            }
+
+            // Use Intersection Observer to trigger metrics animation
+            const metricsSection = document.querySelector('.metrics-container');
+            
+            if (metricsSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateMetrics();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                observer.observe(metricsSection);
+            }
+
+            // Modal for Quick Contact
+            const fabButton = document.getElementById('fabButton');
+            const contactModal = document.getElementById('contactModal');
+            const modalClose = document.getElementById('modalClose');
+            
+            if (fabButton && contactModal && modalClose) {
+                fabButton.addEventListener('click', function () {
+                    contactModal.classList.add('active');
+                });
+                
+                modalClose.addEventListener('click', function () {
+                    contactModal.classList.remove('active');
+                });
+                
+                window.addEventListener('click', function (event) {
+                    if (event.target === contactModal) {
+                        contactModal.classList.remove('active');
+                    }
+                });
+            }
+
+            // Form Submission
+            const contactForm = document.getElementById('contactForm');
+            const quickContactForm = document.getElementById('quickContactForm');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    // Here you would typically handle the form submission
+                    alert('Thank you for your interest! We will contact you shortly.');
+                    contactForm.reset();
+                });
+            }
+            
+            if (quickContactForm) {
+                quickContactForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    // Here you would typically handle the form submission
+                    alert('Thank you for your message! We will respond shortly.');
+                    quickContactForm.reset();
+                    contactModal.classList.remove('active');
+                });
+            }
+        });
+
+        // 3D Background for Hero Section
+        function initHeroBackground() {
+            const canvas = document.getElementById('hero-canvas');
+            
+            if (canvas) {
+                const renderer = new THREE.WebGLRenderer({
+                    canvas: canvas,
+                    antialias: true,
+                    alpha: true
+                });
+                
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                camera.position.z = 5;
+                
+                // Set renderer size
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(window.devicePixelRatio);
+                
+                // Create particles
+                const particlesGeometry = new THREE.BufferGeometry();
+                const particlesCount = 2000;
+                
+                const posArray = new Float32Array(particlesCount * 3);
+                
+                for (let i = 0; i < particlesCount * 3; i++) {
+                    posArray[i] = (Math.random() - 0.5) * 10;
+                }
+                
+                particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+                
+                // Materials
+                const particlesMaterial = new THREE.PointsMaterial({
+                    size: 0.02,
+                    color: 0xFF5722,
+                    transparent: true,
+                    opacity: 0.8
+                });
+                
+                // Mesh
+                const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+                scene.add(particlesMesh);
+                
+                // Animation
+                function animate() {
+                    requestAnimationFrame(animate);
+                    
+                    particlesMesh.rotation.x += 0.0003;
+                    particlesMesh.rotation.y += 0.0005;
+                    
+                    renderer.render(scene, camera);
+                }
+                
+                animate();
+                
+                // Handle window resize
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+        }
+
+        // Initialize the 3D background
+        initHeroBackground();
+
+        // Smooth scroll to anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    lenis.scrollTo(targetElement);
+                    
+                    // Close mobile menu if open
+                    const mainMenu = document.getElementById('mainMenu');
+                    if (mainMenu && mainMenu.classList.contains('active')) {
+                        mainMenu.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        
+    </script>
+</body>
+
+</html>
