@@ -62,17 +62,21 @@
     <!-- Business Challenge Section -->
     <section id="challenges" class="section">
         <div class="container">
-            <h2>Is Your Digital Marketing Delivering Real Business Results?</h2>
-            <ul class="pain-points">
-                <li>Struggling with inconsistent lead generation?</li>
-                <li>Wasting budget on ineffective PPC campaigns?</li>
-                <li>Social media efforts not converting to sales?</li>
-                <li>Website failing to generate quality leads?</li>
-                <li>Unclear ROI from your marketing investments?</li>
-            </ul>
+            <div class="problem">
+                <h2>Is Your Digital Marketing Delivering Real Business Results?</h2>
+                <ul class="pain-points">
+                    <li>Struggling with inconsistent lead generation?</li>
+                    <li>Wasting budget on ineffective PPC campaigns?</li>
+                    <li>Social media efforts not converting to sales?</li>
+                    <li>Website failing to generate quality leads?</li>
+                    <li>Unclear ROI from your marketing investments?</li>
+                </ul>
+            </div>
             <p class="solution-statement">LAG AURA's strategic approach addresses these challenges through data-driven
-                marketing solutions customized for your specific business goals and target audience.</p>
-            <a href="#services" class="cta-button-secondary">Discover How We Solve These Challenges →</a>
+                marketing solutions customized for your specific business goals and target audience.
+                <br>
+                <a href="#services" class="cta-button-secondary">Discover How We Solve These Challenges →</a>
+            </p>
         </div>
     </section>
 
@@ -501,13 +505,72 @@
                         duration: 0.8,
                         scrollTrigger: {
                             trigger: element,
-                            start: 'top bottom-=100',
+                            start: 'top bottom-=20',
                             toggleActions: 'play none none none'
                         }
                     }
                 );
             });
         });
+    </script>
+
+    <!-- CLAUDE CODE FOR HERO ANIMATION -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const heroSection = document.getElementById('hero');
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'particles-container';
+
+            // Create light streaks
+            for (let i = 0; i < 3; i++) {
+                const streak = document.createElement('div');
+                streak.className = 'light-streak';
+                heroSection.appendChild(streak);
+            }
+
+            // Create glowing orbs
+            const heroContent = document.querySelector('#hero .container');
+            for (let i = 0; i < 2; i++) {
+                const glow = document.createElement('div');
+                glow.className = 'glow';
+                heroContent.appendChild(glow);
+            }
+
+            // Create particles
+            heroSection.appendChild(particlesContainer);
+            createParticles();
+
+            function createParticles() {
+                const particleCount = 20;
+
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+
+                    // Random size
+                    const size = Math.random() * 3 + 1;
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+
+                    // Random position
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    particle.style.left = posX + '%';
+                    particle.style.top = posY + '%';
+
+                    // Random opacity
+                    particle.style.opacity = Math.random() * 0.5 + 0.1;
+
+                    // Animation
+                    const duration = Math.random() * 20 + 10;
+                    const delay = Math.random() * 5;
+
+                    particle.style.animation = `floatParticle ${duration}s ${delay}s infinite linear`;
+
+                    particlesContainer.appendChild(particle);
+                }
+            }
+        });  
     </script>
 </body>
 
